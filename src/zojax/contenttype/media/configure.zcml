@@ -1,0 +1,223 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zcml="http://namespaces.zope.org/zcml"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   i18n_domain="zojax.contenttypes">
+   
+  <permission
+     id="zojax.contenttype.AddMediaContainer"
+     title="Add media container"
+     description="Allow add new media container to portal." />
+
+  <permission
+     id="zojax.contenttype.AddVideo"
+     title="Add video"
+     description="Allow add new video to portal." />
+
+  <permission
+     id="zojax.contenttype.AddStandaloneVideo"
+     title="Add standalone video"
+     description="Allow add new standalone video to portal." />
+
+  <permission
+     id="zojax.contenttype.SubmitVideo"
+     title="Submit video"
+     description="Allow submit video to container." />
+
+  <permission
+     id="zojax.contenttype.SubmitStandaloneVideo"
+     title="Submit standalone video"
+     description="Allow submit standalone video to container." />
+
+  <permission
+     id="zojax.contenttype.AddAudio"
+     title="Add audio"
+     description="Allow add new audio to portal." />
+
+  <permission
+     id="zojax.contenttype.AddStandaloneAudio"
+     title="Add standalone audio"
+     description="Allow add new standalone audio to portal." />
+
+  <permission
+     id="zojax.contenttype.SubmitAudio"
+     title="Submit audio"
+     description="Allow submit audio to container." />
+
+  <permission
+     id="zojax.contenttype.SubmitStandaloneAudio"
+     title="Submit standalone audio"
+     description="Allow submit standalone audio to container." />
+
+  <zojax:pageletType
+     name="contenttype.media.item.view"
+     interface=".interfaces.IMediaItemView" />
+
+  <registerIn registry="zojax.product.zojax-contenttypes">
+
+    <!-- video -->
+    <zojax:content
+       title="Video"
+       name="contenttype.video"
+       schema=".interfaces.IVideo"
+       class=".video.Video"
+       contenttype=".interfaces.IVideoType"
+       type="zojax.content.type.interfaces.IActivePortalType
+             .interfaces.IMediaType"
+       description="An uploaded video or an external video link in the site."
+       permission="zojax.contenttype.AddVideo"
+       containers="workspace.media
+                   media.folder" />
+
+    <class class=".video.Video">
+      <implements interface="zojax.ownership.interfaces.IOwnerAware" />
+      <implements interface="zojax.content.type.interfaces.IShareableContent" />
+      <implements interface="zojax.content.type.interfaces.ISearchableContent" />
+      <implements interface="zojax.content.type.interfaces.ITitleBasedName" />
+
+      <require
+         permission="zope.View"
+         interface=".interfaces.IVideo" />
+
+      <require
+         permission="zojax.ModifyContent"
+         set_schema=".interfaces.IVideo
+                     zope.dublincore.interfaces.ICMFDublinCore" />
+    </class>
+
+    <!-- audio -->
+    <zojax:content
+       title="Audio"
+       name="contenttype.audio"
+       schema=".interfaces.IAudio"
+       class=".audio.Audio"
+       contenttype=".interfaces.IAudioType"
+       type="zojax.content.type.interfaces.IActivePortalType
+             .interfaces.IMediaType"
+       description="An uploaded audio or external audio link in the site."
+       permission="zojax.contenttype.AddAudio"
+       containers="workspace.media
+                   media.folder" />
+
+    <class class=".audio.Audio">
+      <implements interface="zojax.ownership.interfaces.IOwnerAware" />
+      <implements interface="zojax.content.type.interfaces.IShareableContent" />
+      <implements interface="zojax.content.type.interfaces.ISearchableContent" />
+      <implements interface="zojax.content.type.interfaces.ITitleBasedName" />
+
+      <require
+         permission="zope.View"
+         interface=".interfaces.IAudio" />
+
+      <require
+         permission="zojax.ModifyContent"
+         set_schema=".interfaces.IAudio
+                     zope.dublincore.interfaces.ICMFDublinCore" />
+    </class>
+
+    <adapter factory=".media.Sized" />
+    <adapter factory=".media.MediaSearchableText" />
+
+    <!-- permissions -->
+    <zojax:permission
+       permission="zojax.contenttype.AddVideo"
+       category="zojax.content.permissions.interfaces.IAddPermission" />
+
+    <zojax:contentpermission
+       contenttype="contenttype.video"
+       permission="zojax.contenttype.AddVideo"
+       managepermission="zojax.ManageContentPermission"
+       class="zojax.content.permissions.content.ContentPermission"
+       category="zojax.content.permissions.interfaces.IAddPermission" />
+
+    <zojax:permission
+       permission="zojax.contenttype.AddAudio"
+       category="zojax.content.permissions.interfaces.IAddPermission" />
+
+    <zojax:contentpermission
+       contenttype="contenttype.audio"
+       permission="zojax.contenttype.AddAudio"
+       managepermission="zojax.ManageContentPermission"
+       class="zojax.content.permissions.content.ContentPermission"
+       category="zojax.content.permissions.interfaces.IAddPermission" />
+
+    <!-- draft support -->
+    <include file="draft.zcml" />
+
+    <!-- workspace -->
+    <include file="workspace.zcml" />
+
+    <!-- media categories -->
+    <include file="category.zcml" />
+
+    <!-- browser views -->
+    <include package=".browser" />
+
+    <!-- indexes -->
+    <utility
+       name="contentTypeIsMedia"
+       provides="zojax.catalog.interfaces.ICatalogIndexFactory"
+       component=".index.indexIsMedia" />
+
+    <utility
+       name="contentTypeMediaCategoryIds"
+       provides="zojax.catalog.interfaces.ICatalogIndexFactory"
+       component=".index.indexMediaCategoryIds" />
+
+    <!-- cache -->
+    <subscriber handler=".cache.mediaItemHandler" />
+
+    <subscriber
+       for=".interfaces.IMediaType
+            zope.app.container.interfaces.IObjectMovedEvent"
+       handler=".cache.mediaItemHandler" />
+
+    <include file="standalone.zcml" />
+    
+    <include file="container.zcml" />
+
+  </registerIn>
+
+  <!-- support extensions -->
+  <class class=".video.Video" zcml:condition="installed zojax.extensions">
+    <implements interface="zojax.extensions.interfaces.IExtensible" />
+  </class>
+
+  <!-- tagging -->
+  <class class=".video.Video"
+   zcml:condition="installed zojax.content.tagging">
+    <implements interface="zojax.content.tagging.interfaces.IContentTaggable" />
+  </class>
+
+  <!-- discussion -->
+  <class class=".video.Video"
+   zcml:condition="installed zojax.content.discussion">
+    <implements interface="zojax.content.discussion.interfaces.IDiscussible" />
+  </class>
+
+  <class class=".audio.Audio" zcml:condition="installed zojax.extensions">
+    <implements interface="zojax.extensions.interfaces.IExtensible" />
+  </class>
+
+  <!-- tagging -->
+  <class class=".audio.Audio"
+   zcml:condition="installed zojax.content.tagging">
+    <implements interface="zojax.content.tagging.interfaces.IContentTaggable" />
+  </class>
+
+  <!-- discussion -->
+  <class class=".audio.Audio"
+   zcml:condition="installed zojax.content.discussion">
+    <implements interface="zojax.content.discussion.interfaces.IDiscussible" />
+  </class>
+
+  <!-- generations -->
+  <utility
+     name="zojax.contenttype.media"
+     provides="zope.app.generations.interfaces.ISchemaManager"
+     component=".generations.schemaManager" />
+
+ <include file="capability.zcml" />
+
+</configure>

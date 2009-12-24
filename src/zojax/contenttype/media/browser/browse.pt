@@ -1,0 +1,16 @@
+<tal:block i18n:domain="zojax.content.documents">
+  <div class="context-actions">
+    <ul>
+      <li>
+	<a title="Documents rss feed" href="@@feeds/documents" i18n:attributes="title">
+	  <img tal:attributes="src context/++resource++rss-icon.png" />
+	</a>
+      </li>
+    </ul>
+  </div>
+  <h1 class="z-content-title" i18n:translate="">Browse documents</h1>
+  <div class="z-page-description" i18n:translate="">
+    List of recently modified documents in current space and all sub spaces.</div>
+  
+  <tal:block content="structure provider:content.documents.browse" />
+</tal:block>

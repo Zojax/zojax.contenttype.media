@@ -1,0 +1,165 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   i18n_domain="zojax.contenttypes">
+
+  <browser:icon
+     name="zmi_icon"
+     for="..interfaces.IVideo"
+     file="video.png" />
+
+  <browser:icon
+     name="zmi_icon"
+     for="..interfaces.IStandaloneVideo"
+     file="video.png" />
+
+  <browser:icon
+     name="zmi_icon"
+     for="..interfaces.IVideoType"
+     file="video.png" />
+
+  <browser:icon
+     name="zmi_icon"
+     for="..interfaces.IStandaloneVideoType"
+     file="video.png" />
+
+  <browser:icon
+     name="zmi_icon"
+     for="..interfaces.IAudio"
+     file="audio.png" />
+
+  <browser:icon
+     name="zmi_icon"
+     for="..interfaces.IStandaloneAudio"
+     file="audio.png" />
+
+  <browser:icon
+     name="zmi_icon"
+     for="..interfaces.IAudioType"
+     file="audio.png" />
+     
+  <browser:icon
+     name="zmi_icon"
+     for="..interfaces.IMediaContainerType"
+     file="mediafolder.png" />
+     
+  <browser:icon
+     name="zmi_icon"
+     for="..interfaces.IMediaContainer"
+     file="mediafolder.png" />
+
+  <browser:icon
+     name="zmi_icon"
+     for="..interfaces.IStandaloneAudioType"
+     file="audio.png" />
+
+  <!-- workspace -->
+  <browser:defaultView
+     name="index.html"
+     for="..interfaces.IMediaWorkspace" />
+
+  <zojax:pagelet
+     name="index.html"
+     for="..interfaces.IMediaWorkspace"
+     template="workspace.pt"
+     class=".mediamodel.MediaListing"
+     permission="zope.View" />
+
+  <browser:icon
+     name="zmi_icon"
+     file="media.png"
+     for="..interfaces.IMediaWorkspace" />
+
+  <browser:icon
+     name="zmi_icon"
+     file="media.png"
+     for="..interfaces.IMediaWorkspaceFactory" />
+
+  <!-- media category -->
+  <zojax:pagelet
+     name="index.html"
+     for="..interfaces.ICategory"
+     template="category.pt"
+     class=".category.CategoryPage"
+     permission="zope.View" />
+
+  <!-- media download -->
+  <browser:page
+     name="view.html"
+     for="..interfaces.IMedia"
+     attribute="show"
+     class=".media.MediaDownload"
+     permission="zope.View" />
+
+  <!-- media item -->
+  <zojax:pagelet
+     type="contenttype.media.item.view"
+     for="..interfaces.IMedia"
+     template="mediaitem.pt"
+     class=".media.MediaPage"
+     permission="zope.View" />
+     
+   <!-- media folder item -->
+  <zojax:pagelet
+     type="contenttype.media.item.view"
+     for="..interfaces.IMediaContainer"
+     template="mediafolderitem.pt"
+     class=".folder.MediaContainerItem"
+     permission="zope.View" />
+
+  <zojax:pagelet
+     name="index.html"
+     for="..interfaces.IMedia"
+     template="mediaview.pt"
+     class=".media.MediaPage"
+     provides="zojax.content.type.interfaces.IContentView"
+     permission="zope.View" />
+
+  <!-- drafts -->
+  <include file="draft.zcml" />
+ 
+  <!-- documents workspace -->
+  <browser:defaultView
+     name="index.html"
+     for="..interfaces.IMediaContainer" />
+
+  <zojax:pagelet
+     name="index.html"
+     for="..interfaces.IMediaContainer"
+     template="folder.pt"
+     provides="zojax.content.type.interfaces.IContentView"
+     permission="zope.View" />
+
+  <!-- browse documents -->
+  <zojax:pagelet
+     name="browse-media.html"
+     for="zojax.content.space.interfaces.IContentSpace"
+     template="browse.pt"
+     permission="zope.View" />
+
+  <!-- browse documents action -->
+  <adapter
+     name="content.media.browse"
+     for="zojax.content.space.interfaces.IContentSpace *"
+     provides=".interfaces.IBrowseMediaAction"
+     factory=".folder.BrowseMediaAction" />
+
+  <adapter
+     name="content.media.browse"
+     for="..interfaces.IMediaWorkspace *"
+     provides=".interfaces.IBrowseMediaAction"
+     factory=".folder.BrowseMediaAction" />
+
+  <!-- documents table -->
+  <adapter
+     name="content.media.browse"
+     provides="zope.contentprovider.interfaces.IContentProvider"
+     factory=".folder.MediaTable" />
+
+  <adapter
+     name="content.media.browse"
+     provides="zope.contentprovider.interfaces.IContentProvider"
+     factory=".folder.SpaceMediaTable" />
+
+</configure>

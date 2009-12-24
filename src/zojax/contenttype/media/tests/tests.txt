@@ -1,0 +1,72 @@
+=====
+Video
+=====
+
+    >>> from zope import component, interface
+    >>> from zope.testbrowser.testing import Browser
+    >>> from zojax.folder.folder import Folder
+
+    >>> root = getRootFolder()
+    >>> root['folder'] = Folder('Folder')
+
+    >>> actor = Browser()
+    >>> actor.handleErrors = False
+    >>> actor.addHeader("Authorization", "Basic mgr:mgrpw")
+
+Install product
+
+    >>> actor.open("http://localhost/settings/")
+    >>> actor.getLink('Products management').click()
+    >>> actor.getControl(name='availproducts:list').value = ['zojax-contenttypes']
+    >>> actor.getControl(name='install').click()
+
+Add video
+
+    >>> actor.open("http://localhost/folder/context.html")
+    >>> actor.getLink('Video').click()
+
+    >>> actor.getControl('Title').value = u'Test video'
+    >>> actor.getControl('Video service').value = u'YouTube'
+    >>> actor.getControl(name="form.widgets.video").value = u'<object>test</object>'
+    >>> actor.getControl('Body').value = u'Page body'
+    >>> actor.getControl(name='add_input_name').value = 'test-video'
+    >>> actor.getControl(name='form.buttons.add').click()
+
+View
+
+    >>> print actor.contents
+    <!DOCTYPE html PUBLIC
+    ...
+    <h1 class="z-content-title">Test video</h1>
+    <div class="z-content-body">
+      <div>Page body</div>
+      <div style="text-align: center"><object>test</object></div>
+    </div>
+    ...
+    </html>
+
+Edit
+
+    >>> actor.open("http://localhost/folder/test-video/context.html")
+    >>> actor.getControl('Title').value = 'New video'
+    >>> actor.getControl('Text position').value = [u'2']
+    >>> actor.getControl(name='content.edit.buttons.save').click()
+
+    >>> actor.open("http://localhost/folder/test-video/")
+    >>> print actor.contents
+    <!DOCTYPE html PUBLIC
+    ...
+    <h1 class="z-content-title">New video</h1>
+    <div class="z-content-body">
+      ...<object>test</object>...
+      <div>Page body</div>
+    </div>
+    ...
+    </html>
+
+Unistall product
+
+    >>> actor.open("http://localhost/settings/")
+    >>> actor.getLink('Products management').click()
+    >>> actor.getControl(name='products:list').value = ['zojax-contenttypes']
+    >>> actor.getControl(name='uninstall').click()

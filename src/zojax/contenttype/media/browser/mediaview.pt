@@ -1,0 +1,32 @@
+<tal:block define="text context/text" i18n:domain="zojax.contenttypes">
+  <p tal:condition="not:text" class="discreet" i18n:translate="">
+    This item does not have any body text, click the edit tab to change it.
+  </p>
+
+  <div style="text-align: center" tal:content="structure view/media"
+       tal:condition="python:context.position == 2" />
+
+  <div tal:define="text context/text/cooked"
+       tal:condition="text" tal:content="structure text">
+    Body Text
+  </div>
+
+  <div style="text-align: center" tal:content="structure view/media"
+       tal:condition="python:context.position == 1" />
+
+  <br />
+  <div class="z-contenttypes-videodate">
+    <span class="discreet" i18n:translate="">Created:</span>
+    <tal:block content="structure formatter:fancyDatetime,full:view/date" />
+  </div>
+
+  <div class="z-contenttypes-videocategory" tal:condition="view/categories">
+    <span class="discreet" i18n:translate="">Categories:</span>
+    <tal:block tal:repeat="category view/categories">
+        <a tal:content="category/title"
+           tal:attributes="href category/@@absolute_url">
+          Category</a><tal:block condition="not:repeat/category/end">,</tal:block>
+      </tal:block>
+  </div>
+
+</tal:block>

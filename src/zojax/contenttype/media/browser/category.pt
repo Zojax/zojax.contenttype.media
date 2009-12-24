@@ -1,0 +1,30 @@
+<tal:block i18n:domain="zojax.contenttypes">
+  <h1 >
+    <tal:block i18n:translate="">Media</tal:block>,
+    <tal:block content="context/title" />
+  </h1>
+  <br />
+
+  <tal:block condition="view/news">
+    <tal:block tal:content="structure view/news/@@pagelet" />
+
+    <div class="z-listing" tal:repeat="item view/medias">
+      <h2><a tal:content="item/title"
+       tal:attributes="href string:${item/@@absolute_url}/"></a></h2>
+      <div style="padding-bottom: 0.5em">
+  <span class="discreet" i18n:translate="">Date:</span>
+  <tal:block tal:define="date python:modules['zope.dublincore.interfaces'].IZopeDublinCore(item).created"
+             content="structure formatter:fancyDatetime,full:date" />
+      </div>
+      <div class="description" tal:content="item/description"></div>
+      <br /><br />
+    </div>
+  </tal:block>
+
+  <tal:block tal:condition="not:view/news">
+    <br />
+    <p i18n:translate="">
+      There are no media in this category.
+    </p>
+  </tal:block>
+</tal:block>

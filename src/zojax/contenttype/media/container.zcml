@@ -1,0 +1,44 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   i18n_domain="zojax.contenttype.media">
+
+  <zojax:content
+     name="media.folder"
+     title="Media folder"
+     class=".container.MediaContainer"
+     schema=".interfaces.IMediaContainer"
+     contains=".interfaces.IMediaType"
+     contenttype=".interfaces.IMediaContainerType"
+     containers="workspace.media
+                 media.folder"
+     type="zojax.content.type.interfaces.IActivePortalType
+           .interfaces.IMediaType"
+     description="A media folder which can contain media."
+     permission="zojax.contenttype.AddMediaContainer" />
+
+  <class class=".container.MediaContainer">
+    <implements interface="zojax.ownership.interfaces.IOwnerAware" />
+    <implements interface="zojax.content.type.interfaces.IContentContainer" />
+    <implements interface="zojax.content.type.interfaces.IShareableContent" />
+    <implements interface="zojax.content.type.interfaces.ISearchableContent" />
+    <implements interface="zojax.content.type.interfaces.IContainerContentsAware" />
+    <implements interface="zojax.content.type.interfaces.ITitleBasedName" />
+
+    <require
+       permission="zope.View"
+       interface=".interfaces.IMediaContainer
+		  zope.app.container.interfaces.IReadContainer" />
+
+    <require
+       permission="zojax.ModifyContent"
+       set_schema=".interfaces.IMediaContainer"
+       interface="zope.app.container.interfaces.IWriteContainer" />
+  </class>
+
+  <!-- draft -->
+  <zojax:draft
+     content="media.folder"
+     publish="zojax.contenttype.AddMediaContainer" />
+
+</configure>

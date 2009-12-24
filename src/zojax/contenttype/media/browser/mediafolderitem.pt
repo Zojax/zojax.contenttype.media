@@ -1,0 +1,27 @@
+<tal:block i18n:domain="zojax.contenttypes">
+  <tal:block content="structure context/@@zmi_icon" />
+  
+  <div class="contenttype-media-item">
+  
+    <h3 class="contenttype-media-item-heading">
+      <a class="contenttype-media-item-heading-title" tal:content="context/title"
+         tal:attributes="href string:${context/@@absolute_url}/">Test blog post</a>
+      <span class="contenttype-media-item-location" tal:condition="view/container_url">
+        in
+        <a href="#" tal:attributes="href string:${view/container_url}/"
+     tal:content="view/container_title">Blog</a>
+      </span>
+    </h3>
+  
+    <div class="contenttype-media-item-byline">
+      <tal:block i18n:translate="">Posted by</tal:block>
+      <a href="#1" title="See author's profile"
+         tal:attributes="href view/profile_url"
+         tal:content="view/author" tal:omit-tag="not:view/profile_url">Lael Powers</a>
+      <span class="contenttype-media-item-date"
+      tal:content="structure formatter:fancyDatetime,full:view/date">Dec 16, 2008</span>
+    </div>
+  
+  </div>
+
+</tal:block>

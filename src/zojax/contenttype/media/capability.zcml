@@ -1,0 +1,46 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zcml="http://namespaces.zope.org/zcml">
+
+  <!-- activity -->
+  <class class=".media.Media"
+   zcml:condition="installed zojax.activity">
+    <implements interface="zojax.activity.interfaces.IActivityAware" />
+  </class>
+
+  <!-- extensions -->
+  <class class=".media.Media"
+   zcml:condition="installed zojax.extensions">
+    <implements interface="zojax.extensions.interfaces.IExtensible" />
+  </class>
+
+  <class class=".workspace.MediaWorkspace"
+   zcml:condition="installed zojax.extensions">
+    <implements interface="zojax.extensions.interfaces.IExtensible" />
+  </class>
+
+  <!-- attachments -->
+  <class class=".media.Media"
+   zcml:condition="installed zojax.content.attachment">
+    <implements interface="zojax.content.attachment.interfaces.IAttachmentsAware" />
+  </class>
+
+  <!-- tagging -->
+  <class class=".media.Media"
+   zcml:condition="installed zojax.content.tagging">
+    <implements interface="zojax.content.tagging.interfaces.IContentTaggable" />
+  </class>
+
+  <!-- discussion -->
+  <class class=".media.Media"
+   zcml:condition="installed zojax.content.discussion">
+    <implements interface="zojax.content.discussion.interfaces.IDiscussible" />
+  </class>
+
+  <!-- document view modes -->
+  <class class=".media.Media"
+   zcml:condition="installed zojax.content.models.document">
+    <implements interface="zojax.content.models.document.interfaces.IDocumentModelsAware" />
+  </class>
+
+</configure>

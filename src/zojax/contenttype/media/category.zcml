@@ -1,0 +1,65 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   i18n_domain="zojax.contenttypes">
+
+  <!-- category -->
+  <zojax:content
+     title="Category"
+     schema=".interfaces.ICategory"
+     name="contenttype.media.category"
+     class=".category.Category"
+     containers="contenttype.media.categorycontainer" />
+
+  <class class=".category.Category">
+    <implements interface="zojax.ownership.interfaces.IInheritOwnership" />
+
+    <require
+       permission="zope.View"
+       attributes="entries"
+       interface=".interfaces.ICategory" />
+
+    <require
+       permission="zojax.ModifyContent"
+       set_schema=".interfaces.ICategory" />
+  </class>
+
+  <!-- category container -->
+  <zojax:content
+     title="Category container"
+     schema=".interfaces.ICategoryContainer"
+     name="contenttype.media.categorycontainer"
+     class=".category.CategoryContainer"
+     type="zojax.content.type.interfaces.IInactiveType"
+     contains="contenttype.media.category" />
+
+  <class class=".category.CategoryContainer">
+    <implements interface="zojax.ownership.interfaces.IInheritOwnership" />
+    <implements interface="zojax.content.type.interfaces.IRenameNotAllowed" />
+    <implements interface="zojax.content.type.interfaces.IUnremoveableContent" />
+    <implements interface="zojax.content.type.interfaces.IContainerContentsAware" />
+
+    <require
+       permission="zope.View"
+       interface=".interfaces.ICategoryContainer
+                  zojax.content.type.interfaces.IItem
+                  zope.app.container.interfaces.IReadContainer" />
+    <require
+       permission="zojax.ModifyContent"
+       set_schema=".interfaces.ICategoryContainer"
+       interface="zope.app.container.interfaces.IWriteContainer" />
+  </class>
+
+  <utility
+     name="zojax.contenttype.media-categories"
+     component=".category.CategoryIdsVocabulary"
+     provides="zope.schema.interfaces.IVocabularyFactory"
+     />
+
+  <utility
+     name="zojax.contenttype.media-portal-categories"
+     component=".category.PortalCategoryIdsVocabulary"
+     provides="zope.schema.interfaces.IVocabularyFactory"
+     />
+
+</configure>

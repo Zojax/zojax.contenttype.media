@@ -1,0 +1,51 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zcml="http://namespaces.zope.org/zcml"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   zcml:condition="installed zojax.content.draft"
+   i18n_domain="zojax.contenttypes">
+
+  <include package="zojax.content.draft" />
+
+  <zojax:permission
+     permission="zojax.contenttype.SubmitVideo"
+     category="zojax.content.permissions.interfaces.ISubmitPermission" />
+
+  <zojax:permission
+     permission="zojax.contenttype.SubmitStandaloneVideo"
+     category="zojax.content.permissions.interfaces.ISubmitPermission" />
+
+  <zojax:contentpermission
+     contenttype="contenttype.video"
+     permission="zojax.contenttype.SubmitVideo"
+     managepermission="zojax.ManageContentPermission"
+     class="zojax.content.permissions.content.ContentPermission"
+     category="zojax.content.permissions.interfaces.ISubmitPermission" />
+
+  <zojax:draft
+     content="contenttype.video"
+     publish="zojax.contenttype.AddVideo"
+     submit="zojax.contenttype.SubmitVideo" />
+
+  <zojax:permission
+     permission="zojax.contenttype.SubmitAudio"
+     category="zojax.content.permissions.interfaces.ISubmitPermission" />
+
+  <zojax:permission
+     permission="zojax.contenttype.SubmitStandaloneAudio"
+     category="zojax.content.permissions.interfaces.ISubmitPermission" />
+
+  <zojax:contentpermission
+     contenttype="contenttype.audio"
+     permission="zojax.contenttype.SubmitAudio"
+     managepermission="zojax.ManageContentPermission"
+     class="zojax.content.permissions.content.ContentPermission"
+     category="zojax.content.permissions.interfaces.ISubmitPermission" />
+
+  <zojax:draft
+     content="contenttype.audio"
+     publish="zojax.contenttype.AddAudio"
+     submit="zojax.contenttype.SubmitAudio" />
+
+</configure>

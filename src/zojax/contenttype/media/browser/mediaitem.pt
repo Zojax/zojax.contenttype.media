@@ -1,0 +1,66 @@
+<tal:block i18n:domain="zojax.contenttypes">
+  <tal:block content="structure context/@@zmi_icon" />
+<div class="contenttype-media-item">
+
+  <h3 class="contenttype-media-item-heading">
+    <a class="contenttype-media-item-heading-title" tal:content="context/title"
+       tal:attributes="href view/url">Test blog post</a>
+    <span class="contenttype-media-item-location" tal:condition="view/container_url">
+      in
+      <a href="#" tal:attributes="href string:${view/container_url}/"
+   tal:content="view/container_title">Blog</a>
+    </span>
+  </h3>
+
+  <div class="contenttype-media-item-byline">
+    <tal:block i18n:translate="">Posted by</tal:block>
+    <a href="#1" title="See author's profile"
+       tal:attributes="href view/profile_url"
+       tal:content="view/author" tal:omit-tag="not:view/profile_url">Lael Powers</a>
+    <span class="contenttype-media-item-date"
+    tal:content="structure formatter:fancyDatetime,full:view/date">Dec 16, 2008</span>
+  </div>
+
+  <div tal:content="structure view/media"
+       tal:condition="python:context.position == 2" />
+
+  <div tal:define="text context/text/cooked"
+       tal:condition="text" tal:content="structure text">
+    Body Text
+  </div>
+
+  <div style="text-align: center" tal:content="structure view/media"
+       tal:condition="python:context.position == 1" />
+
+  <ul class="contenttype-media-footer">
+    <li class="contenttype-media-footer-comments" tal:condition="view/discussible">
+      <a href="#" title="Read comments" i18n:translate=""
+         tal:attributes="href view/url">
+  <tal:block content="view/comments" i18n:name="number"/> comments</a>
+    </li>
+
+    <li class="contenttype-media-footer-addcomment" tal:condition="view/addcomment">
+      <a tal:attributes="href string:${view/url}#postComment"
+   title="Add new comment">Add comment</a>
+    </li>
+
+    <li class="contenttype-media-footer-categories" tal:condition="view/categories">
+      <tal:block tal:repeat="category view/categories">
+  <a href="#" tal:content="category/title"
+     tal:attributes="href category/@@absolute_url">
+    Category</a><tal:block condition="not: repeat/category/end">,</tal:block>
+      </tal:block>
+    </li>
+
+    <li class="contenttype-media-footer-tags" tal:condition="view/tags">
+      <tal:block tal:repeat="tag view/tags">
+  <a href="#" tal:content="tag"
+     tal:attributes="href string:${view/site_url}/tags/global/${tag/lower}/">
+    Tag1</a><tal:block condition="not: repeat/tag/end">,</tal:block>
+      </tal:block>
+    </li>
+  </ul>
+
+</div>
+
+</tal:block>

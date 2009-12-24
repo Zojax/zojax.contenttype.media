@@ -1,0 +1,16 @@
+<tal:block i18n:domain="zojax.contenttypes">
+  <h1 i18n:translate="">Media</h1>
+  <div class="media-listing">
+    <tal:block content="structure view/medias/@@pagelet/batch.view" />
+
+    <div tal:repeat="context view/medias"
+         tal:attributes="class python:repeat['context'].odd() and 'odd' or 'even'">
+      <tal:block content="structure pagelet:contenttype.media.item.view" />
+    </div>
+
+    <div tal:condition="not:view/medias" i18n:translate="">
+      There are no media in this media workspace.
+    </div>
+
+  </div>
+</tal:block>
