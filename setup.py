@@ -21,7 +21,7 @@ from setuptools import setup, find_packages
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-version='0.0.1dev'
+version='0'
 
 
 setup(name = 'zojax.contenttype.media',
@@ -61,6 +61,7 @@ setup(name = 'zojax.contenttype.media',
                           'zojax.product',
                           'zojax.content.type',
                           'zojax.contenttypes',
+                          'zojax.content.space',
                           'zojax.filefield',
                           'zojax.jquery.media',
                           ],

@@ -1,13 +1,14 @@
 =====
-Video
+Media
 =====
 
     >>> from zope import component, interface
     >>> from zope.testbrowser.testing import Browser
-    >>> from zojax.folder.folder import Folder
+
+    >>> from zojax.content.space.content import ContentSpace
 
     >>> root = getRootFolder()
-    >>> root['folder'] = Folder('Folder')
+    >>> root['space'] = ContentSpace('Space')
 
     >>> actor = Browser()
     >>> actor.handleErrors = False
@@ -22,7 +23,7 @@ Install product
 
 Add video
 
-    >>> actor.open("http://localhost/folder/context.html")
+    >>> actor.open("http://localhost/space/context.html")
     >>> actor.getLink('Video').click()
 
     >>> actor.getControl('Title').value = u'Test video'

@@ -19,7 +19,7 @@ import unittest, os.path
 from zojax.contenttypes.testing import setUp, ZCMLLayer, FunctionalDocFileSuite
 
 
-videoLayer = ZCMLLayer(
+mediaLayer = ZCMLLayer(
     os.path.join(os.path.split(__file__)[0], 'ftesting.zcml'),
     __name__, 'mediaLayer', allow_teardown=True)
 
@@ -27,4 +27,4 @@ videoLayer = ZCMLLayer(
 def test_suite():
     return unittest.TestSuite((
             FunctionalDocFileSuite(
-                './tests.txt', layer=videoLayer, setUp=setUp),))
+                './tests.txt', layer=mediaLayer, setUp=setUp),))

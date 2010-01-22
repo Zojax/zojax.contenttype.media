@@ -1,38 +1,24 @@
 <configure
    xmlns="http://namespaces.zope.org/zope"
    xmlns:browser="http://namespaces.zope.org/browser"
-   xmlns:zojax="http://namespaces.zope.org/zojax"
    i18n_domain="zope">
 
-  <!-- This file is the equivalent of site.zcml and it is -->
-  <!-- used for functional testing setup -->
-  <include package="zope.component" file="meta.zcml" />
-  <include package="zope.securitypolicy" file="meta.zcml" />
-  <include package="zope.viewlet" file="meta.zcml" />
-  <include package="zope.app.component" file="meta.zcml" />
-  <include package="zope.app.security" file="meta.zcml" />
-  <include package="zope.app.pagetemplate" file="meta.zcml" />
+  <exclude package="zojax.content.space" />
 
-  <include package="zope.securitypolicy" />
-  <include package="zope.contentprovider" />
-  <include package="zope.app.security" />
-  <include package="zope.app.zcmlfiles" />
-  <include package="zope.app.authentication" />
+  <include package="zojax.autoinclude" file="meta.zcml" />
+  <includeAllDependencies package="zojax.contenttype.media" extras="test" />
 
-  <include package="z3c.autoinclude" file="meta.zcml" />
-  <include package="zojax.folder" />
-  <include package="zojax.contenttypes" />
-  <include package="zojax.contenttype.video" />
+  <include package="zojax.contenttype.media.tests" />
+  <includeOverrides package="zojax.contenttype.media.tests" file="overrides.zcml" />
 
   <interface
      name="DefaultSkin"
-     interface="zojax.contenttypes.testing.IDefaultSkin"
+     interface="zojax.content.textannotation.tests.tests.IDefaultSkin"
      type="zope.publisher.interfaces.browser.IBrowserSkinType" />
 
   <browser:defaultSkin name="DefaultSkin" />
 
-  <securityPolicy
-     component="zojax.security.securitypolicy.SecurityPolicy" />
+  <securityPolicy component="zojax.security.securitypolicy.SecurityPolicy" />
 
   <role id="zope.Anonymous" title="Everybody"
         description="All users have this role implicitly" />
@@ -62,6 +48,11 @@
       title="User"
       login="user"
       password="userpw" />
+
+  <everybodyGroup
+      id="zope.Everybody"
+      title="All Users"
+      />
 
   <grant role="zope.Manager" principal="zope.mgr" />
 
