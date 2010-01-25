@@ -3,12 +3,12 @@ Media
 =====
 
     >>> from zope import component, interface
+    >>> from zope.app.component.hooks import setSite
     >>> from zope.testbrowser.testing import Browser
 
-    >>> from zojax.content.space.content import ContentSpace
-
     >>> root = getRootFolder()
-    >>> root['space'] = ContentSpace('Space')
+    >>> setSite(root)
+    >>> sm = root.getSiteManager()
 
     >>> actor = Browser()
     >>> actor.handleErrors = False
@@ -21,47 +21,48 @@ Install product
     >>> actor.getControl(name='availproducts:list').value = ['zojax-contenttypes']
     >>> actor.getControl(name='install').click()
 
-Add video
+Add standalone video
 
-    >>> actor.open("http://localhost/space/context.html")
-    >>> actor.getLink('Video').click()
+    >>> actor.open("http://localhost/space/+")
+    >>> actor.getLink('Standalone video').click()
 
+    >>> actor.open('?form.widgets.mediaType=flv')
     >>> actor.getControl('Title').value = u'Test video'
-    >>> actor.getControl('Video service').value = u'YouTube'
-    >>> actor.getControl(name="form.widgets.video").value = u'<object>test</object>'
+    >>> actor.getControl("Media source").value = u'<object>test</object>'
     >>> actor.getControl('Body').value = u'Page body'
-    >>> actor.getControl(name='add_input_name').value = 'test-video'
-    >>> actor.getControl(name='form.buttons.add').click()
+    >>> actor.getControl("Publish").click()
 
 View
 
     >>> print actor.contents
-    <!DOCTYPE html PUBLIC
+    <html>
     ...
-    <h1 class="z-content-title">Test video</h1>
-    <div class="z-content-body">
+    ...<h1 class="z-content-title">Test video</h1>...
+    ...
       <div>Page body</div>
-      <div style="text-align: center"><object>test</object></div>
+      <div style="text-align: center">
+    <object>test</object>
     </div>
     ...
     </html>
 
 Edit
 
-    >>> actor.open("http://localhost/folder/test-video/context.html")
+    >>> actor.open("http://localhost/space/test-video/context.html")
     >>> actor.getControl('Title').value = 'New video'
     >>> actor.getControl('Text position').value = [u'2']
     >>> actor.getControl(name='content.edit.buttons.save').click()
 
-    >>> actor.open("http://localhost/folder/test-video/")
+    >>> actor.open("http://localhost/space/test-video/")
     >>> print actor.contents
-    <!DOCTYPE html PUBLIC
+    <html>
     ...
-    <h1 class="z-content-title">New video</h1>
-    <div class="z-content-body">
-      ...<object>test</object>...
-      <div>Page body</div>
+    ...<h1 class="z-content-title">New video</h1>...
+    ...
+      <div style="text-align: center">
+    <object>test</object>
     </div>
+    <div>Page body</div>
     ...
     </html>
 
@@ -71,3 +72,5 @@ Unistall product
     >>> actor.getLink('Products management').click()
     >>> actor.getControl(name='products:list').value = ['zojax-contenttypes']
     >>> actor.getControl(name='uninstall').click()
+
+    >>> setSite(None)

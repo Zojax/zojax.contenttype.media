@@ -14,12 +14,6 @@
   <div style="text-align: center" tal:content="structure view/media"
        tal:condition="python:context.position == 1" />
 
-  <br />
-  <div class="z-contenttypes-videodate">
-    <span class="discreet" i18n:translate="">Created:</span>
-    <tal:block content="structure formatter:fancyDatetime,full:view/date" />
-  </div>
-
   <div class="z-contenttypes-videocategory" tal:condition="view/categories">
     <span class="discreet" i18n:translate="">Categories:</span>
     <tal:block tal:repeat="category view/categories">

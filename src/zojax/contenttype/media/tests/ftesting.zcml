@@ -3,8 +3,6 @@
    xmlns:browser="http://namespaces.zope.org/browser"
    i18n_domain="zope">
 
-  <exclude package="zojax.content.space" />
-
   <include package="zojax.autoinclude" file="meta.zcml" />
   <includeAllDependencies package="zojax.contenttype.media" extras="test" />
 
@@ -13,7 +11,7 @@
 
   <interface
      name="DefaultSkin"
-     interface="zojax.content.textannotation.tests.tests.IDefaultSkin"
+     interface="zojax.contenttype.media.tests.tests.IDefaultSkin"
      type="zope.publisher.interfaces.browser.IBrowserSkinType" />
 
   <browser:defaultSkin name="DefaultSkin" />
