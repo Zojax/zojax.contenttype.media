@@ -62,16 +62,15 @@ class MediaPage(object):
                              and self.context.mediaData.data) \
                             and '%s/view.html' % absoluteURL(self.context, self.request) \
                             or (self.context.mediaURL or '')
-            self.mediaURLEncoded = urllib.quote(self.mediaURL)
             if self.context.mediaURLList:
                 self.mediaURL = self.context.mediaURLList[0]
-                urls = map(lambda x: r"""{\'url\':\'%s\', \'autoPlay\': %s}""" % (urllib.quote(x[1]), \
-                                                                                     x[0]==0 and self.autoplay or 'true'), \
-                                                enumerate(self.context.mediaURLList))
-                self.mediaURLListEncoded = r"\'playlist\': [ %s]" % ','.join(urls)
+                mediaURLList = self.context.mediaURLList
             else:
-                self.mediaURLListEncoded = r"\'playlist\': [ %s]" % self.mediaURLEncoded
-        #\'clip\': {\'url\':\'${view/mediaURLEncoded}\', \'autoPlay\': ${view/autoplay}, \'autoBuffering\': true }
+                mediaURLList = [self.mediaURL]
+            urls = map(lambda x: r"""{\'url\':\'%s\', \'autoPlay\': %s}""" % (urllib.quote(x[1]), \
+                                                                                 x[0]==0 and self.autoplay or 'true'), \
+                                            enumerate(mediaURLList))
+            self.mediaURLListEncoded = r"\'playlist\': [%s]" % ','.join(urls)
         discussion = IContentDiscussion(self.context, None)
         self.comments = discussion is not None and len(discussion)
         self.discussible = discussion is not None and discussion.status != 3
