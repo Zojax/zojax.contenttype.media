@@ -161,5 +161,10 @@
      name="content.media.browse"
      provides="zope.contentprovider.interfaces.IContentProvider"
      factory=".folder.SpaceMediaTable" />
+     
+  <browser:icon
+     name="zmi_icon"
+     file="media.png"
+     for=".interfaces.IBrowseMediaAction" />
 
 </configure>
