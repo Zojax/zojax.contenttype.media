@@ -150,6 +150,9 @@
 
     <!-- media categories -->
     <include file="category.zcml" />
+    
+    <!-- groups -->
+    <include file="groups.zcml" />
 
     <!-- browser views -->
     <include package=".browser" />
