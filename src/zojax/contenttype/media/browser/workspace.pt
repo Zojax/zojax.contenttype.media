@@ -1,4 +1,4 @@
-<tal:block i18n:domain="zojax.contenttypes">
+<tal:block i18n:domain="zojax.contenttype.media">
   <h1 i18n:translate="">Media</h1>
   <div class="media-listing">
     <tal:block content="structure view/medias/@@pagelet/batch.view" />

@@ -4,7 +4,7 @@
    xmlns:zojax="http://namespaces.zope.org/zojax"
    xmlns:browser="http://namespaces.zope.org/browser"
    zcml:condition="installed zojax.content.draft"
-   i18n_domain="zojax.contenttypes">
+   i18n_domain="zojax.contenttype.media">
 
   <include package="zojax.content.draft" />
 

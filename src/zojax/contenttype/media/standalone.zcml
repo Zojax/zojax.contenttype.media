@@ -3,7 +3,7 @@
    xmlns:zcml="http://namespaces.zope.org/zcml"
    xmlns:zojax="http://namespaces.zope.org/zojax"
    xmlns:browser="http://namespaces.zope.org/browser"
-   i18n_domain="zojax.contenttypes">
+   i18n_domain="zojax.contenttype.media">
 
   <!-- standalone video -->
   <zojax:content

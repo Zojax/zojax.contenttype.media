@@ -1,4 +1,4 @@
-<tal:block i18n:domain="zojax.content.documents">
+<tal:block i18n:domain="zojax.contenttype.media">
   <div class="context-actions">
     <ul>
       <li>

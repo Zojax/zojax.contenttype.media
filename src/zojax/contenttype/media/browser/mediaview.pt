@@ -1,4 +1,4 @@
-<tal:block define="text context/text" i18n:domain="zojax.contenttypes">
+<tal:block define="text context/text" i18n:domain="zojax.contenttype.media">
   <p tal:condition="not:text" class="discreet" i18n:translate="">
     This item does not have any body text, click the edit tab to change it.
   </p>

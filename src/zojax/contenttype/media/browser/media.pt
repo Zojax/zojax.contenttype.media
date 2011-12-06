@@ -3,6 +3,6 @@
    tal:attributes="href view/mediaURL;
                    title context/description;
                    class string:z-media {width: '${context/width}', height: '${context/height}', type: '${context/mediaType}', autoplay: ${view/autoplay}, params:{allowfullscreen: true}, flashvars: {type: '${context/mediaType}', config: '{ ${view/mediaURLListEncoded} }', autostart: ${view/autoplay}}}">
-  <img alt="context/title" tal:attributes="src view/preview | nothing" />
+  <img alt="context/title" tal:attributes="src view/preview | nothing; alt context/title | nothing" />
 </a>
 <tal:block tal:condition="context/mediaSource" content="structure context/mediaSource" />

@@ -1,4 +1,4 @@
-<tal:block i18n:domain="zojax.contenttypes">
+<tal:block i18n:domain="zojax.contenttype.media">
   <tal:block content="structure context/@@zmi_icon" />
 <div class="contenttype-media-item">
 
@@ -15,7 +15,7 @@
   <div class="contenttype-media-item-byline">
     <tal:block i18n:translate="">Posted by</tal:block>
     <a href="#1" title="See author's profile"
-       tal:attributes="href view/profile_url"
+       tal:attributes="href view/profile_url" i18n:attributes="title"
        tal:content="view/author" tal:omit-tag="not:view/profile_url">Lael Powers</a>
     <span class="contenttype-media-item-date"
     tal:content="structure formatter:fancyDatetime,full:view/date">Dec 16, 2008</span>
@@ -34,13 +34,13 @@
 
   <ul class="contenttype-media-footer">
     <li class="contenttype-media-footer-comments" tal:condition="view/discussible">
-      <a href="#" title="Read comments" i18n:translate=""
+      <a href="#" title="Read comments" i18n:translate="" i18n:attributes="title"
          tal:attributes="href view/url">
   <tal:block content="view/comments" i18n:name="number"/> comments</a>
     </li>
 
     <li class="contenttype-media-footer-addcomment" tal:condition="view/addcomment">
-      <a tal:attributes="href string:${view/url}#postComment"
+      <a tal:attributes="href string:${view/url}#postComment" i18n:attributes="title" i18n:translate=""
    title="Add new comment">Add comment</a>
     </li>
 

@@ -1,4 +1,4 @@
-<tal:block i18n:domain="zojax.contenttypes">
+<tal:block i18n:domain="zojax.contenttype.media">
   <h1 >
     <tal:block i18n:translate="">Media</tal:block>,
     <tal:block content="context/title" />
