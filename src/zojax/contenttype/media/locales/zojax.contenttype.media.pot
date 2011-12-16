@@ -1,0 +1,337 @@
+##############################################################################
+#
+# Copyright (c) 2003-2004 Zope Corporation and Contributors.
+# All Rights Reserved.
+#
+# This software is subject to the provisions of the Zope Public License,
+# Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
+# WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
+# FOR A PARTICULAR PURPOSE.
+#
+##############################################################################
+msgid ""
+msgstr ""
+"Project-Id-Version: Development/Unknown\n"
+"POT-Creation-Date: Thu Dec  8 22:06:19 2011\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Zope 3 Developers <zope3-dev@zope.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: zope/app/locales/extract.py\n"
+
+#: src/zojax/contenttype/media/browser/browse.pt:11
+msgid "Browse documents"
+msgstr ""
+
+#: src/zojax/contenttype/media/browser/browse.pt:12
+msgid "List of recently modified documents in current space and all sub spaces."
+msgstr ""
+
+#: src/zojax/contenttype/media/browser/browse.pt:5
+msgid "Documents rss feed"
+msgstr ""
+
+#: src/zojax/contenttype/media/browser/category.pt:15
+msgid "Date:"
+msgstr ""
+
+#: src/zojax/contenttype/media/browser/category.pt:26
+msgid "There are no media in this category."
+msgstr ""
+
+#: src/zojax/contenttype/media/browser/draft.py:30
+#: src/zojax/contenttype/media/interfaces.py:102
+#: src/zojax/contenttype/media/category.zcml:7
+msgid "Category"
+msgstr ""
+
+#: src/zojax/contenttype/media/browser/draft.py:47
+msgid "Add"
+msgstr ""
+
+#: src/zojax/contenttype/media/browser/draftcategory.pt:1
+msgid "Categories"
+msgstr ""
+
+#: src/zojax/contenttype/media/browser/folder.py:43
+#: src/zojax/contenttype/media/browser/category.pt:3
+#: src/zojax/contenttype/media/browser/workspace.pt:2
+msgid "Media"
+msgstr ""
+
+#: src/zojax/contenttype/media/browser/folder.py:47
+msgid "No content has been added yet."
+msgstr ""
+
+#: src/zojax/contenttype/media/browser/folder.py:70
+msgid "Browse media"
+msgstr ""
+
+#: src/zojax/contenttype/media/browser/mediafolderitem.pt:17
+#: src/zojax/contenttype/media/browser/mediaitem.pt:16
+msgid "Posted by"
+msgstr ""
+
+#: src/zojax/contenttype/media/browser/mediafolderitem.pt:18
+#: src/zojax/contenttype/media/browser/mediaitem.pt:17
+msgid "See author's profile"
+msgstr ""
+
+#: src/zojax/contenttype/media/browser/mediaitem.pt:37
+msgid "Read comments"
+msgstr ""
+
+#: src/zojax/contenttype/media/browser/mediaitem.pt:39
+msgid "${number} comments"
+msgstr ""
+
+#: src/zojax/contenttype/media/browser/mediaitem.pt:43
+msgid "Add new comment"
+msgstr ""
+
+#: src/zojax/contenttype/media/browser/mediaitem.pt:43
+msgid "Add comment"
+msgstr ""
+
+#: src/zojax/contenttype/media/browser/mediaview.pt:18
+msgid "Categories:"
+msgstr ""
+
+#: src/zojax/contenttype/media/browser/mediaview.pt:2
+msgid "This item does not have any body text, click the edit tab to change it."
+msgstr ""
+
+#: src/zojax/contenttype/media/browser/workspace.pt:11
+msgid "There are no media in this media workspace."
+msgstr ""
+
+#: src/zojax/contenttype/media/category.zcml:28
+msgid "Category container"
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:13
+msgid "Allow add new video to portal."
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:13
+msgid "Add video"
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:18
+msgid "Allow add new standalone video to portal."
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:18
+msgid "Add standalone video"
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:23
+msgid "Submit video"
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:23
+msgid "Allow submit video to container."
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:28
+msgid "Submit standalone video"
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:28
+msgid "Allow submit standalone video to container."
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:33
+msgid "Add audio"
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:33
+msgid "Allow add new audio to portal."
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:38
+msgid "Add standalone audio"
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:38
+msgid "Allow add new standalone audio to portal."
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:43
+msgid "Allow submit audio to container."
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:43
+msgid "Submit audio"
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:48
+msgid "Submit standalone audio"
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:48
+msgid "Allow submit standalone audio to container."
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:60
+msgid "Video"
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:60
+#: src/zojax/contenttype/media/standalone.zcml:9
+msgid "An uploaded video or an external video link in the site."
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:8
+msgid "Add media container"
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:8
+msgid "Allow add new media container to portal."
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:90
+msgid "Audio"
+msgstr ""
+
+#: src/zojax/contenttype/media/configure.zcml:90
+#: src/zojax/contenttype/media/standalone.zcml:50
+msgid "An uploaded audio or external audio link in the site."
+msgstr ""
+
+#: src/zojax/contenttype/media/container.zcml:6
+msgid "A media folder which can contain media."
+msgstr ""
+
+#: src/zojax/contenttype/media/container.zcml:6
+msgid "Media folder"
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:103
+msgid "Select category for the media."
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:121
+msgid "Preview"
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:122
+msgid "Preview image."
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:164
+msgid "Page size"
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:165
+msgid "Number of medias items per page."
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:170
+msgid "Sub spaces"
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:171
+msgid "Show media for all sub-spaces or just for current space."
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:31
+msgid "Above media"
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:32
+msgid "Under media"
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:47
+msgid "Media source"
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:48
+msgid "HTML to link to Media."
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:52
+msgid "Media URL"
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:53
+msgid "Link to Media."
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:57
+msgid "Media URL List"
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:58
+msgid "List of Links to Media, will be used as playlist. Makes sense only for mp3 or flv types"
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:62
+msgid "Media data"
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:63
+msgid "Upload the media content."
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:67
+msgid "Media type"
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:68
+msgid "Media type, i.e. flv, etc."
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:72
+msgid "Body"
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:73
+msgid "Media body text."
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:77
+msgid "Text position"
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:78
+msgid "Put text above or under media."
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:84
+msgid "Width"
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:85
+msgid "Media content width."
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:90
+msgid "Height"
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:91
+msgid "Media content height."
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:96
+msgid "Autoplay"
+msgstr ""
+
+#: src/zojax/contenttype/media/interfaces.py:97
+msgid "Autoplay."
+msgstr ""
+
+#: src/zojax/contenttype/media/standalone.zcml:50
+msgid "Standalone audio"
+msgstr ""
+
+#: src/zojax/contenttype/media/standalone.zcml:9
+msgid "Standalone video"
+msgstr ""
+
