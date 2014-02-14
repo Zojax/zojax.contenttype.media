@@ -4,9 +4,9 @@
    i18n_domain="zojax.contenttype.media">
 
   <include package="zojax.autoinclude" file="meta.zcml" />
-  <includeAllDependencies package="zojax.contenttype.media" extras="test" />
 
-  <include package="zojax.contenttype.media.tests" />
+  <includeAllDependencies package="zojax.calendar" extras="test" />
+  <includeAllDependencies package="zojax.contenttype.media" extras="test" />
   <includeOverrides package="zojax.contenttype.media.tests" file="overrides.zcml" />
 
   <interface
