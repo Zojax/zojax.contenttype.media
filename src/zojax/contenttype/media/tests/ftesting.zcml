@@ -5,7 +5,6 @@
 
   <include package="zojax.autoinclude" file="meta.zcml" />
 
-  <includeAllDependencies package="zojax.calendar" extras="test" />
   <includeAllDependencies package="zojax.contenttype.media" extras="test" />
   <includeOverrides package="zojax.contenttype.media.tests" file="overrides.zcml" />
 

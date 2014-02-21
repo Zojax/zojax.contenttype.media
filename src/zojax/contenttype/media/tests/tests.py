@@ -76,18 +76,6 @@ def FunctionalDocFileSuite(*paths, **kw):
         event.notify(ObjectCreatedEvent(space))
         root['space'] = space
 
-        # people
-        people = PersonalSpaceManager(title=u'People')
-        event.notify(ObjectCreatedEvent(people))
-        root['people'] = people
-        sm.registerUtility(root['people'], IPersonalSpaceManager)
-
-        user = sm.getUtility(IAuthentication).getPrincipal('zope.mgr')
-        people.assignPersonalSpace(user)
-        
-        user = sm.getUtility(IAuthentication).getPrincipal('zope.user')
-        people.assignPersonalSpace(user)
-
         endInteraction()
         
     kw['setUp'] = setUp

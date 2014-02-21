@@ -14,12 +14,6 @@ Media
     >>> actor.handleErrors = False
     >>> actor.addHeader("Authorization", "Basic mgr:mgrpw")
 
-Install product
-
-    >>> actor.open("http://localhost/settings/")
-    >>> actor.getLink('Products management').click()
-    >>> actor.getControl(name='availproducts:list').value = ['zojax-contenttypes']
-    >>> actor.getControl(name='install').click()
 
 Add standalone video
 
@@ -35,14 +29,16 @@ Add standalone video
 View
 
     >>> print actor.contents
-    <html>
+    <!DOCTYPE ...
     ...
-    ...<h1 class="z-content-title">Test video</h1>...
+      <div class="z-portal-statusmessage"><div class="statusMessage">Data successfully updated.</div>
+    <div class="statusMessage">Your Standalone video has been published.</div>
+    ...
+    </div><h1 class="z-content-title">Test video</h1>
     ...
       <div>Page body</div>
-      <div style="text-align: center">
+    ...
     <object>test</object>
-    </div>
     ...
     </html>
 
@@ -55,22 +51,14 @@ Edit
 
     >>> actor.open("http://localhost/space/test-video/")
     >>> print actor.contents
-    <html>
+    <!DOCTYPE ...
     ...
-    ...<h1 class="z-content-title">New video</h1>...
+    </div><h1 class="z-content-title">New video</h1>
     ...
-      <div style="text-align: center">
     <object>test</object>
     </div>
-    <div>Page body</div>
+      <div>Page body</div>
     ...
     </html>
-
-Unistall product
-
-    >>> actor.open("http://localhost/settings/")
-    >>> actor.getLink('Products management').click()
-    >>> actor.getControl(name='products:list').value = ['zojax-contenttypes']
-    >>> actor.getControl(name='uninstall').click()
 
     >>> setSite(None)
